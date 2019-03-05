@@ -38,3 +38,28 @@ header li:hover{
 .title h1 {
     margin-bottom: 0px;
 }
+
+.container {
+    display: grid; 
+    grid-template: repeat(16, 1fr) / repeat(16,1fr); 
+    width: 600px; 
+    height: 600px; 
+    margin: 20px auto;
+}
+
+#delete{
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    border: 0;
+    padding: 7px 25px;
+}
+
+#delete:hover {
+    background-color: white;
+}
+
+.box {
+    background-color: white;
+}
+

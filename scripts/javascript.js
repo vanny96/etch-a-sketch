@@ -1,29 +1,45 @@
-let body = document. querySelector("body");
+let body = document.querySelector("body");
+let button = document.querySelector("#delete");
 
-let paragraph = document.createElement("p");
-paragraph.setAttribute("style", "color: red");
-paragraph.textContent = "Hey I'm red!";
-body.appendChild(paragraph);
+let boxes = [];
 
-let semiTitle = document.createElement("h3");
-semiTitle.setAttribute("style", "color: blue");
-semiTitle.textContent = "Hey I'm blue h3";
-body.appendChild(semiTitle);
+let container;
 
-let strangeDiv = document.createElement("div");
-strangeDiv.setAttribute("style", "border-color: black; background-color: pink");
+generateGrid(16);
 
-let title = document.createElement("h1");
-title.textContent = "I'm h1 in a Div!";
-strangeDiv.appendChild(title);
+button.addEventListener("click", () => {
+    let dimension = prompt("How many rows do you want?");
+    generateGrid(dimension);    
+})
 
-let para = document.createElement("p");
-para.textContent = "ME TOO!";
-strangeDiv.appendChild(para);
+function generateGrid (number){
 
-body.appendChild(strangeDiv);
+    if(document.contains(document.querySelector(".container"))){
+        body.removeChild(document.querySelector(".container"));
+    }
 
-let button = document.querySelector("#test");
-button.addEventListener('dblclick', () => {
-    console.log("Called");
-  });
+    container = document.createElement("div");
+    container.setAttribute("class", "container");
+    container.setAttribute("style", "grid-template: repeat(" + number + ", 1fr) / repeat(" + number + ",1fr);")
+
+    for(let i = 0; i < number * number; i++){
+        let box = document.createElement("div");
+        box.setAttribute("class", "box")
+        container.appendChild(box);
+        boxes.push(box);
+    }
+
+    body.insertBefore(container, button);
+
+    assignBoxes();
+ }
+
+
+function assignBoxes(){
+    boxes.forEach((box) => {
+        box.addEventListener("mouseenter", (e) => {
+            e.target.style.background = "black";
+        })
+    })
+}
+
